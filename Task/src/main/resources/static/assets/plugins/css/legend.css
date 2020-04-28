@@ -1,0 +1,50 @@
+.legend {
+	list-style: none;
+}
+
+.legend li {
+	float: left;
+	margin-right: 10px;
+}
+
+.legend span {
+	border: 1px solid black;
+	float: left;
+	width: 40px;
+	height: 15px;
+	margin: 2px;
+}
+/* your colors */
+.legend .teal {
+	background-color: #17a2b8;
+}
+
+.legend .blue {
+	background-color: #007bff;
+}
+
+.legend .orange {
+	background-color: #ffc107;
+}
+
+.legend .red {
+	background-color: #dc3545;
+}
+
+.legend .green {
+	background-color: #28a745;
+}
+
+.legend .indigo
+{
+	background-color: #6610f2;
+}
+.legend .deeppink
+{
+	background-color:#FF1493;
+}
+
+.legend .grey
+{
+	background-color: #6c757d;
+}

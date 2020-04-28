@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Employee Data</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+  
+   
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="assets/plugins/jquery.validationEngine-en.js"></script>
+    <link rel="stylesheet" href="assets/jquery-ui/jquery-ui.theme.css"/>
+        <link rel="stylesheet" href="assets/jquery-ui/jquery-ui.structure.min.css"/>
+</head>
+<body>
+
+<div class="container table-responsive" id="page-holder" th:fragment="page-holder">
+ 
+  <p style="color:red; padding: 10px;" align="center" ><b>Employee Data</b></p>     
+    <p style="color:green;" align="center" th:text="${info}"><b></b></p>     
+         
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>category</th>
+          <th>categoryid</th>
+            <th>address</th>
+              <th>description</th>
+                <th>contact</th>
+                  <th>empcode</th>
+                    
+                    <th>image</th>
+                    <th>Action</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="e:${data}">
+        <td th:text="${e.getId()}"></td>
+       <td th:text="${e.getName()}"></td>
+          <td th:text="${e.getCategory()}"></td>
+             <td th:text="${e.getCategoryid()}"></td>
+                <td th:text="${e.getAddress()}"></td>
+                   <td th:text="${e.getDescription()}"></td>
+                      <td th:text="${e.getContact()}"></td>
+                         <td th:text="${e.getEmpcode()}"></td>
+                      
+                           <td><!-- <img th:src="${(studentImage!=null)? 'data:'+ simgtype +';base64,'+studentImage : ''}"
+													class="img-rounded" alt="Image Not Available" width="110"
+													height="115" style="border: solid 2px #3c8dbc;" /> -->
+													
+													
+													<img class="img-rounded" th:src="${e.getImage()}" style="border: solid 2px #3c8dbc;"  height="115" width="110"
+alt="no image" />
+													
+													
+													</td>
+													    <td ><button class="btn btn-danger" data-toggle="modal" 
+                          
+                          th:onclick= "'javascript:getDetails(\''+ ${e.getId()} +'\');'"
+                           data-target="#exampleModal">Edit</button></td>
+      </tr>
+      
+    </tbody>
+  </table>
+  
+  
+
+
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body container-fluid">
+
+
+<form id="submitform" name="submitform" method="get"  >
+  <div class="form-group row">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Id</label>
+    <div class="col-sm-10">
+     <input type="text" id="id" name="id" readonly="readonly"/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" id="name" placeholder="name"  name="name"   data-validation-engine="validate[required]"/>
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">category</label>
+    <div class="col-sm-10">
+     <input type="text" class="form-control" id="category" placeholder="category" name="category" data-validation-engine="validate[required]"/>
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">categoryid</label>
+    <div class="col-sm-10">
+  <input type="text" class="form-control" id="categoryid" placeholder="categoryid" name="categoryid" data-validation-engine="validate[required]"/>
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" id="address" placeholder="address" name="address" data-validation-engine="validate[required]"/>
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">description</label>
+    <div class="col-sm-10">
+     <input type="text" class="form-control" id="description" placeholder="description" name="description" data-validation-engine="validate[required]"/>
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">contact</label>
+    <div class="col-sm-10">
+  <input type="text" class="form-control" id="contact" placeholder="contact" name="contact" data-validation-engine="validate[required]"/>
+    </div>
+  </div>
+     <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">empcode</label>
+    <div class="col-sm-10">
+  <input type="text" class="form-control" id="empcode" placeholder="empcode" name="empcode" data-validation-engine="validate[required]"/>
+    </div>
+  </div>
+  
+    <div class="form-group row">
+
+    <div class="col-sm-10">
+  <input type="hidden" class="form-control" id="image" placeholder="image" name="image" data-validation-engine="validate[required]"/>
+    </div>
+  </div>
+  
+  <script src="assets/plugins/jquery.validationEngine.js"></script>
+  
+<script>
+
+
+jQuery(document)
+		.ready(
+				function() {
+					// binds form submission and fields to the validation engine						
+				
+					jQuery("#submitform")
+							.validationEngine(
+									'attach',
+									{
+										autoHidePrompt : true,
+										binded : false,
+										onValidationComplete : function(
+												form,
+												status) {
+											if (status) {
+												//processSaveTTPatternDetail();
+												
+											submit();
+										
+											}
+											
+										}
+									});
+				});
+
+
+function submit()
+{
+	var myform = document.getElementById("submitform");
+	var fd = new FormData(myform);	
+	
+	$.ajax({
+		url : "submitdetails",
+		type : "POST",
+		data : fd,
+		cache : false,
+		processData : false,
+		contentType : false,
+		success : function(response) {
+		
+		
+			
+			try {
+				
+		
+				$('#exampleModal').modal('toggle'); 
+				$('#exampleModal').unblock();
+				}
+				catch(err) {
+					console.log(err.message);
+					}
+				
+			
+	
+			$("#page-holder").html(response);
+
+			try {
+				
+				
+				$('#exampleModal').hide();
+				$('#exampleModal').unblock();
+				}
+				catch(err) {
+					console.log(err.message);
+					}
+				
+		
+		},
+		error : function(jqXHR, textStatus,
+				errorMessage) {
+
+			$("#upload-file-message").text(
+					errorMessage
+							+ "Error while Editing");
+		}
+	});
+	
+	
+	}
+
+function getDetails(xyz)	{
+					
+	$.ajax({
+		url : "getdetails",
+		type : "GET",
+		data : "updatenumber="+xyz,
+		success : function(response) {
+			$('#exampleModal').show();
+			//console.log(response);
+			//console.log(typeof response);
+			
+			//console.log(response.name);
+			var myObj=response;
+			
+			try {
+			for (x in myObj) {
+				
+				  document.getElementById(x).value = myObj[x];
+				}
+	
+			
+			}
+			catch(err) {
+				console.log(err.message);
+				}
+			
+		},
+		error : function(jqXHR, textStatus,
+				errorMessage) {
+
+			$("#upload-file-message").text(
+					errorMessage
+							+ "Error while Editing");
+		}
+	});
+	
+}
+</script>
+  <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+</form>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+</body>
+</html>
